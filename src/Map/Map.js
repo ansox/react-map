@@ -8,6 +8,9 @@ import { MarkerLayer } from "../layers/MarkerLayers";
 import { MarkerLayerWithTooltip } from "../layers/MarkerLayerWithTooltip";
 
 export const Map = () => {
+  const [radiusFilter, setRadiusFilter] = React.useState(null);
+  const getRadiusFilter = () => radiusFilter;
+
   const scrollWheelZoom = true;
 
   return (
@@ -16,7 +19,7 @@ export const Map = () => {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <MarkerLayer data={cities} />
+      <MarkerLayer data={cities} setRadiusFilter={setRadiusFilter} getRadiusFilter={getRadiusFilter}/>
       <MarkerLayerWithTooltip data={mountains} />
     </MapContainer>
   )
