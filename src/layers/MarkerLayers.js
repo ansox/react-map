@@ -8,7 +8,7 @@ export function MarkerLayer({data}) {
       const { coordinates } = feature.geometry;
 
       return (
-        <Marker position={[coordinates[1], coordinates[0]]} icon={defaultIcon}>
+        <Marker key={String(coordinates)} position={[coordinates[1], coordinates[0]]} icon={defaultIcon}>
           <Popup>
             A pretty CSS3 popup. <br /> Easily customizable.
           </Popup>

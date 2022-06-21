@@ -1,8 +1,11 @@
 import React from "react";
-import { MapContainer, TileLayer, Marker, Popup} from 'react-leaflet';
+import { MapContainer, TileLayer} from 'react-leaflet';
 
 import { cities} from '../data/cities';
+import { mountains } from "../data/highest_points";
+
 import { MarkerLayer } from "../layers/MarkerLayers";
+import { MarkerLayerWithTooltip } from "../layers/MarkerLayerWithTooltip";
 
 export const Map = () => {
   const scrollWheelZoom = true;
@@ -14,6 +17,7 @@ export const Map = () => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <MarkerLayer data={cities} />
+      <MarkerLayerWithTooltip data={mountains} />
     </MapContainer>
   )
 }
