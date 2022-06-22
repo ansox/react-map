@@ -3,9 +3,12 @@ import { MapContainer, TileLayer} from 'react-leaflet';
 
 import { cities} from '../data/cities';
 import { mountains } from "../data/highest_points";
+import { continents } from "../data/continents";
+import { ContinentsPolygonLayer } from "../layers/ContinentPolygonLayer";
 
 import { MarkerLayer } from "../layers/MarkerLayers";
 import { MarkerLayerWithTooltip } from "../layers/MarkerLayerWithTooltip";
+import { RadiusFilter } from "../layers/RadiusFilter";
 
 export const Map = () => {
   const [radiusFilter, setRadiusFilter] = React.useState(null);
@@ -21,6 +24,8 @@ export const Map = () => {
       />
       <MarkerLayer data={cities} setRadiusFilter={setRadiusFilter} getRadiusFilter={getRadiusFilter}/>
       <MarkerLayerWithTooltip data={mountains} />
+      <RadiusFilter radiusFilter={radiusFilter} setRadiusFilter={setRadiusFilter}/>
+      <ContinentsPolygonLayer data={continents} />
     </MapContainer>
   )
 }
