@@ -11,8 +11,10 @@ import { MarkerLayerWithTooltip } from "../layers/MarkerLayerWithTooltip";
 import { RadiusFilter } from "../layers/RadiusFilter";
 
 export const Map = () => {
+  const [geoFilter, setGeoFilter] = React.useState(null);
   const [radiusFilter, setRadiusFilter] = React.useState(null);
   const getRadiusFilter = () => radiusFilter;
+  const getGeoFilter = () => geoFilter;
 
   const scrollWheelZoom = true;
 
@@ -22,10 +24,10 @@ export const Map = () => {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <MarkerLayer data={cities} setRadiusFilter={setRadiusFilter} getRadiusFilter={getRadiusFilter}/>
+      <MarkerLayer data={cities} setRadiusFilter={setRadiusFilter} getRadiusFilter={getRadiusFilter}  getGeoFilter={getGeoFilter}/>
       <MarkerLayerWithTooltip data={mountains} />
       <RadiusFilter radiusFilter={radiusFilter} setRadiusFilter={setRadiusFilter}/>
-      <ContinentsPolygonLayer data={continents} />
+      <ContinentsPolygonLayer data={continents}  setGeoFilter={setGeoFilter} getGeoFilter={getGeoFilter}/>
     </MapContainer>
   )
 }

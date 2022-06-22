@@ -4,6 +4,7 @@ import { Button, Card, InputNumber, Space } from "antd";
 import { Marker, Popup } from "react-leaflet";
 import { defaultIcon } from "../icons/defaultIcon";
 import { FilterOutlined } from "@ant-design/icons";
+import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
 
 const DEFAULT_RADIUS = 3000;
 
@@ -60,7 +61,8 @@ function PopupStatistics({feature, setRadiusFilter}) {
   )
 }
 
-export function MarkerLayer({data, setRadiusFilter, getRadiusFilter}) {
+export function MarkerLayer({data, setRadiusFilter, getRadiusFilter, getGeoFilter}) {
+  const geoFilter = getGeoFilter();
   const radiusFilter = getRadiusFilter();
 
   let centerPoint;
@@ -74,10 +76,30 @@ export function MarkerLayer({data, setRadiusFilter, getRadiusFilter}) {
   return (
     data.features
       .filter(currentFeature => {
+        let filterByRadius;
+        let filterByGeo;
+
+
         if (centerPoint) {
           const { coordinates } = currentFeature.geometry;
           const currentPoint = L.latLng(coordinates[1], coordinates[0]);
-          return centerPoint.distanceTo(currentPoint) / 1000 < radiusFilter.radius;
+            filterByRadius = centerPoint.distanceTo(currentPoint) / 1000 < radiusFilter.radius;
+        }
+
+        if (geoFilter) {
+          filterByGeo = booleanPointInPolygon(currentFeature, geoFilter)
+        }
+
+        if (geoFilter && radiusFilter) {
+          return filterByGeo && filterByRadius;
+        }
+
+        if (geoFilter) {
+          return filterByGeo;
+        }
+
+        if (radiusFilter) {
+          return filterByRadius;
         }
 
         return true;
