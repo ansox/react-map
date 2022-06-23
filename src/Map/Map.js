@@ -27,7 +27,7 @@ export const Map = () => {
       <MarkerLayer data={cities} setRadiusFilter={setRadiusFilter} getRadiusFilter={getRadiusFilter}  getGeoFilter={getGeoFilter}/>
       <MarkerLayerWithTooltip data={mountains} />
       <RadiusFilter radiusFilter={radiusFilter} setRadiusFilter={setRadiusFilter}/>
-      <ContinentsPolygonLayer data={continents}  setGeoFilter={setGeoFilter} getGeoFilter={getGeoFilter}/>
+      <ContinentsPolygonLayer data={continents}  setGeoFilter={setGeoFilter} getGeoFilter={getGeoFilter} />
     </MapContainer>
   )
 }

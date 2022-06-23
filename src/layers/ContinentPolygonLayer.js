@@ -12,5 +12,12 @@ export function ContinentsPolygonLayer({data, setGeoFilter, getGeoFilter}) {
         })
       }
     }}
+    style={(feature) => {
+      return {
+        color: geoFilter === feature ? 'red' : 'blue',
+        weight: 0.5,
+        fillOpacity: 0.4
+      }
+    }}
   ></GeoJSON>
 }
