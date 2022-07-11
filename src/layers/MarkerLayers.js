@@ -1,7 +1,7 @@
 import L from 'leaflet';
 import { React, useState } from "react";
 import { Button, Card, InputNumber, Space } from "antd";
-import { Marker, Popup } from "react-leaflet";
+import { Marker, Popup, LayersControl, LayerGroup } from "react-leaflet";
 import { defaultIcon } from "../icons/defaultIcon";
 import { FilterOutlined } from "@ant-design/icons";
 import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
@@ -72,8 +72,7 @@ export function MarkerLayer({data, setRadiusFilter, getRadiusFilter, getGeoFilte
     centerPoint = L.latLng(coordinates[1], coordinates[0]);
   }
 
-
-  return (
+  const layer = (
     data.features
       .filter(currentFeature => {
         let filterByRadius;
@@ -108,7 +107,8 @@ export function MarkerLayer({data, setRadiusFilter, getRadiusFilter, getGeoFilte
         const { coordinates } = feature.geometry;
 
         return (
-          <Marker key={String(coordinates)} position={[coordinates[1], coordinates[0]]} icon={defaultIcon}>
+          <Marker key={String(coordinates)} position={[coordinates[1], coordinates[0]]} 
+            icon={defaultIcon} doFitToBounds={true}>
             <Popup>
               <PopupStatistics feature={feature} setRadiusFilter={setRadiusFilter}/>
             </Popup>
@@ -117,4 +117,8 @@ export function MarkerLayer({data, setRadiusFilter, getRadiusFilter, getGeoFilte
       })
     
   )
+
+  return <LayersControl.Overlay checked name="World cities">
+    <LayerGroup>{layer}</LayerGroup>
+  </LayersControl.Overlay>
 }

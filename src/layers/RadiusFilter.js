@@ -1,10 +1,10 @@
-import { Circle } from "react-leaflet";
+import { Circle, LayersControl } from "react-leaflet";
 
 export function RadiusFilter({radiusFilter, setRadiusFilter }) {
   if (radiusFilter) {
     const { coordinates } = radiusFilter.feature.geometry;
 
-    return (
+    const layer = (
       <Circle 
         center={[coordinates[1], coordinates[0]]} 
         radius={radiusFilter.radius * 1000}   
@@ -18,6 +18,10 @@ export function RadiusFilter({radiusFilter, setRadiusFilter }) {
         weight={1}
         fillOpacity={0.4}
       />
+    )
+
+    return (
+      <LayersControl.Overlay checked name="Radius filter">{layer}</LayersControl.Overlay>
     )
   }
   
