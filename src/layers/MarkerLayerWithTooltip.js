@@ -30,7 +30,7 @@ export function MarkerLayerWithTooltip({data}) {
   )
 
   return (
-    <LayersControl.Overlay checked name="Highest Points"> 
+    <LayersControl.Overlay name="Highest Points"> 
       <LayerGroup>{layer}</LayerGroup>
     </LayersControl.Overlay>)
 

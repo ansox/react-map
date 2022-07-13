@@ -118,7 +118,7 @@ export function MarkerLayer({data, setRadiusFilter, getRadiusFilter, getGeoFilte
     
   )
 
-  return <LayersControl.Overlay checked name="World cities">
+  return <LayersControl.Overlay name="World cities">
     <LayerGroup>{layer}</LayerGroup>
   </LayersControl.Overlay>
 }

@@ -21,7 +21,7 @@ export function RadiusFilter({radiusFilter, setRadiusFilter }) {
     )
 
     return (
-      <LayersControl.Overlay checked name="Radius filter">{layer}</LayersControl.Overlay>
+      <LayersControl.Overlay name="Radius filter">{layer}</LayersControl.Overlay>
     )
   }
   

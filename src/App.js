@@ -1,7 +1,7 @@
 import React from "react";
 import { Map } from "./Map/Map";
 import "leaflet/dist/leaflet.css";
-import "./app.css";
+import "./App.css";
 import "antd/dist/antd.variable.min.css"
 
 export const App = () => {

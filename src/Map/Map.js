@@ -10,6 +10,7 @@ import { MarkerLayer } from "../layers/MarkerLayers";
 import { MarkerLayerWithTooltip } from "../layers/MarkerLayerWithTooltip";
 import { RadiusFilter } from "../layers/RadiusFilter";
 import { FitDataToBoundControl } from "../controls/FitDataToBound";
+import { ShowActiveFiltersControl } from "../controls/ShowActiveFilters";
 
 export const Map = () => {
   const [geoFilter, setGeoFilter] = React.useState(null);
@@ -34,6 +35,7 @@ export const Map = () => {
         <ContinentsPolygonLayer data={continents}  setGeoFilter={setGeoFilter} getGeoFilter={getGeoFilter} />
       </LayersControl>
       <FitDataToBoundControl />
+      <ShowActiveFiltersControl getFilters={() => ({geoFilter, radiusFilter})}/>
     </MapContainer>
   )
 }
